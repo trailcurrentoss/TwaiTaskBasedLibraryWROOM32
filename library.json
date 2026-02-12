@@ -1,0 +1,34 @@
+{
+  "name": "TwaiTaskBasedLibraryWROOM32",
+  "version": "0.0.1",
+  "description": "FreeRTOS task-based TWAI (CAN) communication wrapper for ESP32-WROOM-32",
+  "keywords": [
+    "twai",
+    "can",
+    "esp32",
+    "esp32-wroom-32",
+    "freertos",
+    "asynchronous"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:trailcurrentopensource/TwaiTaskBasedLibraryWROOM32.git"
+  },
+  "authors": [
+    {
+      "name": "TrailCurrent"
+    }
+  ],
+  "license": "MIT",
+  "platforms": [
+    "espressif32"
+  ],
+  "frameworks": [
+    "arduino"
+  ],
+  "build": {
+    "flags": [
+      "-I/include"
+    ]
+  }
+}

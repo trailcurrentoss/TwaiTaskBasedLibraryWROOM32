@@ -1,0 +1,35 @@
+# Build artifacts
+*.o
+*.a
+*.so
+build/
+dist/
+*.elf
+*.bin
+
+# PlatformIO
+.pio/
+.platformio/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+*.bak
+*.tmp
+
+# Python
+__pycache__/
+*.pyc
+
+# Dependencies
+.gitmodules
+CLAUDE.md
