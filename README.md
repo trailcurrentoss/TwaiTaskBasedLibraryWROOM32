@@ -26,7 +26,7 @@ Add this library to your PlatformIO `platformio.ini`:
 
 ```ini
 lib_deps =
-    git@ssh://git@codeberg.org/trailcurrentopensource/TwaiTaskBasedLibraryWROOM32.git@0.0.1
+    git@github.com:trailcurrentoss/TwaiTaskBasedLibraryWROOM32.git#0.0.1
 ```
 
 ## Usage Example
