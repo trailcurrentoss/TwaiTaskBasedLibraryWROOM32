@@ -34,6 +34,7 @@ public:
    * @param txPin GPIO pin for CAN TX
    * @param rxPin GPIO pin for CAN RX
    * @param baudrate CAN bus speed (125000, 250000, 500000, 1000000)
+   * @param mode TWAI operating mode (TWAI_MODE_NORMAL, TWAI_MODE_NO_ACK, TWAI_MODE_LISTEN_ONLY)
    * @param rxTaskStack RX task stack size in bytes (default 4096)
    * @param rxTaskPrio RX task priority (default 10)
    * @param txTaskPrio TX task priority (default 9)
@@ -41,6 +42,7 @@ public:
    */
   static bool begin(gpio_num_t txPin, gpio_num_t rxPin,
                     uint32_t baudrate = 500000,
+                    twai_mode_t mode = TWAI_MODE_NORMAL,
                     uint32_t rxTaskStack = 4096,
                     UBaseType_t rxTaskPrio = 10,
                     UBaseType_t txTaskPrio = 9);

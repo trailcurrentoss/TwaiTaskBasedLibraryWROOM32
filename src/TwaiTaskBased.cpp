@@ -11,6 +11,7 @@ TwaiTaskBased::TxCallback TwaiTaskBased::_txCallback = nullptr;
 
 bool TwaiTaskBased::begin(gpio_num_t txPin, gpio_num_t rxPin,
                           uint32_t baudrate,
+                          twai_mode_t mode,
                           uint32_t rxTaskStack,
                           UBaseType_t rxTaskPrio,
                           UBaseType_t txTaskPrio) {
@@ -20,7 +21,7 @@ bool TwaiTaskBased::begin(gpio_num_t txPin, gpio_num_t rxPin,
 
   // Configure TWAI general settings
   twai_general_config_t g_config =
-      TWAI_GENERAL_CONFIG_DEFAULT(txPin, rxPin, TWAI_MODE_NORMAL);
+      TWAI_GENERAL_CONFIG_DEFAULT(txPin, rxPin, mode);
 
   // Get timing configuration based on requested baudrate
   twai_timing_config_t t_config = timingFromBaudrate(baudrate);
