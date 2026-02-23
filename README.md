@@ -1,6 +1,6 @@
 # TwaiTaskBasedLibraryWROOM32
 
-FreeRTOS task-based TWAI (CAN) communication wrapper for ESP32-WROOM-32.
+FreeRTOS task-based TWAI (CAN) communication wrapper for ESP32-WROOM-32. Part of the [TrailCurrent](https://trailcurrent.com) open-source vehicle platform.
 
 ## Overview
 
