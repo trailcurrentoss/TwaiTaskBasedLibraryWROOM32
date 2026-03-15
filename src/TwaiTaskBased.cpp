@@ -141,11 +141,11 @@ void TwaiTaskBased::txTask(void *pvParameters) {
   while (true) {
     // Wait for a message from the queue
     if (xQueueReceive(_txQueue, &msg, portMAX_DELAY) == pdTRUE) {
-      // Attempt to transmit the message
-      esp_err_t res = twai_transmit(&msg, portMAX_DELAY);
+      // Attempt to transmit with bounded timeout to prevent blocking
+      // during bus errors, bus-off recovery, or missing ACK conditions
+      esp_err_t res = twai_transmit(&msg, pdMS_TO_TICKS(50));
 
       if (_txCallback != nullptr) {
-        // Call the registered callback with transmission result
         _txCallback(res == ESP_OK);
       }
     }
