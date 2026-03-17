@@ -87,6 +87,9 @@ private:
   static void rxTask(void *pvParameters);
   static void txTask(void *pvParameters);
 
+  // Recover from bus-off state (called automatically on TX failure)
+  static void recoverBusOff();
+
   // Helper function to get timing configuration from baudrate
   static twai_timing_config_t timingFromBaudrate(uint32_t baudrate);
 };

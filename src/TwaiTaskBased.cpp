@@ -134,6 +134,23 @@ void TwaiTaskBased::rxTask(void *pvParameters) {
   vTaskDelete(nullptr);
 }
 
+void TwaiTaskBased::recoverBusOff() {
+  twai_status_info_t status;
+  if (twai_get_status_info(&status) != ESP_OK) return;
+  if (status.state != TWAI_STATE_BUS_OFF) return;
+
+  Serial.println("TwaiTaskBased: Bus-off detected, recovering...");
+  if (twai_initiate_recovery() == ESP_OK) {
+    // Recovery transitions driver to STOPPED state
+    vTaskDelay(pdMS_TO_TICKS(100));
+    if (twai_start() == ESP_OK) {
+      Serial.println("TwaiTaskBased: Bus recovered");
+    } else {
+      Serial.println("TwaiTaskBased: Bus restart failed");
+    }
+  }
+}
+
 void TwaiTaskBased::txTask(void *pvParameters) {
   twai_message_t msg;
 
@@ -144,6 +161,10 @@ void TwaiTaskBased::txTask(void *pvParameters) {
       // Attempt to transmit with bounded timeout to prevent blocking
       // during bus errors, bus-off recovery, or missing ACK conditions
       esp_err_t res = twai_transmit(&msg, pdMS_TO_TICKS(50));
+
+      if (res != ESP_OK) {
+        recoverBusOff();
+      }
 
       if (_txCallback != nullptr) {
         _txCallback(res == ESP_OK);
